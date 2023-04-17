@@ -1,9 +1,28 @@
-import {Image, StyleSheet, Text, View, Pressable, TextInput} from 'react-native';
+import {Image, StyleSheet, Text, View, Pressable, TextInput, Button} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {launchImageLibraryAsync, MediaTypeOptions} from "expo-image-picker";
 
 export default function Options({navigation, route: {params}}) {
-    console.log('Options : ' + params.userName);
+    const [image, setImage] = useState(null);
+
+    const getImage = async () => {
+        let result = await launchImageLibraryAsync({
+            mediaTypes: MediaTypeOptions.Images,
+            allowsEditing: true,
+            base64: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            setImage(result.assets[0]);
+        }
+    };
+
     return (
         <View style={styles.container}>
+            <Button title={'Montres nous ta boT intérieur'} onPress={getImage} />
+            {image && <Image source={image} style={{width: 200, height: 200}} />}
             <TextInput
                 style={styles.input}
                 placeholder="Nom d'utilisateur"

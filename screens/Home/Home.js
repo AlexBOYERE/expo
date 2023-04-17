@@ -23,7 +23,7 @@ export default function Home({navigation, route: {params}}) {
                 source={require('../../assets/images/quizz.jpg')}
             />
             <Text style={styles.title}>Bienvenue {params.userName} dans Quizz Game !</Text>
-            <Pressable style={[styles.pressable, styles.textIcon, styles.bgBlue]}>
+            <Pressable style={[styles.pressable, styles.textIcon, styles.bgBlue]} disabled={true}>
                 <Icon name={'dice'} size={20} color={'white'}/>
                 <Text style={styles.colorWhite}>
                     Commencer
