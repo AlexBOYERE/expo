@@ -1,8 +1,21 @@
 import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
-
+import { useFonts } from 'expo-font';
+import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import { faker } from '@faker-js/faker';
 
+const Icon = createIconSetFromIcoMoon(
+    require('../../assets/fonts/icomoon/selection.json'),
+    'icoMoon',
+    'icomoon.ttf');
+
 export default function Home({navigation, route: {params}}) {
+    const [fontsLoaded] = useFonts({
+        icoMoon: require('../../assets/fonts/icomoon/icomoon.ttf'),
+    });
+    if (!fontsLoaded) {
+        return null;
+    }
+
     return (
         <View style={styles.container}>
             <Image
@@ -14,7 +27,10 @@ export default function Home({navigation, route: {params}}) {
             </Pressable>
             <Text style={styles.title}>Bienvenue { params.userName } dans Quizz Game !</Text>
             <Pressable style={[styles.pressable, styles.bgBlue]}>
-                <Text style={styles.colorWhite}>Commencer</Text>
+                <Text style={styles.colorWhite}>
+                    <Icon name={'play'} size={20} color={'white'}/>
+                    Commencer
+                </Text>
             </Pressable>
             <Pressable style={[styles.pressable, styles.bgGreen]}>
                 <Text style={styles.colorWhite}>Classement</Text>
