@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
-import { useFonts } from 'expo-font';
-import { createIconSetFromIcoMoon } from '@expo/vector-icons';
-import { faker } from '@faker-js/faker';
+import {useFonts} from 'expo-font';
+import {createIconSetFromIcoMoon} from '@expo/vector-icons';
+import {faker} from '@faker-js/faker';
 
 const Icon = createIconSetFromIcoMoon(
     require('../../assets/fonts/icomoon/selection.json'),
@@ -22,23 +22,26 @@ export default function Home({navigation, route: {params}}) {
                 style={styles.mainLogo}
                 source={require('../../assets/images/quizz.jpg')}
             />
-            <Pressable style={[styles.pressable, styles.bgBlue]} onPress={() => console.log('home : ' + params.userName) }>
-                <Text style={styles.colorWhite}>Dumper Username</Text>
-            </Pressable>
-            <Text style={styles.title}>Bienvenue { params.userName } dans Quizz Game !</Text>
-            <Pressable style={[styles.pressable, styles.bgBlue]}>
+            <Text style={styles.title}>Bienvenue {params.userName} dans Quizz Game !</Text>
+            <Pressable style={[styles.pressable, styles.textIcon, styles.bgBlue]}>
+                <Icon name={'dice'} size={20} color={'white'}/>
                 <Text style={styles.colorWhite}>
-                    <Icon name={'play'} size={20} color={'white'}/>
                     Commencer
                 </Text>
             </Pressable>
-            <Pressable style={[styles.pressable, styles.bgGreen]}>
-                <Text style={styles.colorWhite}>Classement</Text>
+            <Pressable style={[styles.pressable, styles.textIcon, styles.bgGreen]}>
+                <Icon name={'trophy'} size={20} color={'white'}/>
+                <Text style={styles.colorWhite}>
+                    Classement
+                </Text>
             </Pressable>
-            <Pressable style={[styles.pressable, styles.bgGrey]} onPress={() =>
+            <Pressable style={[styles.pressable, styles.textIcon, styles.bgGrey]} onPress={() =>
                 navigation.navigate('Options', {'userName': params.userName})
             }>
-                <Text style={styles.colorWhite}>Options</Text>
+                <Icon name={'equalizer'} size={20} color={'white'}/>
+                <Text style={styles.colorWhite}>
+                    Options
+                </Text>
             </Pressable>
         </View>
     );
@@ -71,6 +74,11 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         marginTop: 20,
+    },
+
+    textIcon: {
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
     bgBlue: {
