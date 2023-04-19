@@ -5,6 +5,7 @@ import {faker} from '@faker-js/faker';
 
 import Home from './screens/Home/Home';
 import Options from './screens/Options/Options';
+import Play from './screens/Play/Play';
 
 const Routes = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export default function App() {
             <Routes.Navigator>
                 <Routes.Screen name="Home" component={Home} initialParams={{userName: Username}}/>
                 <Routes.Screen name="Options" component={Options}/>
+                <Routes.Screen name="Play" component={Play}/>
             </Routes.Navigator>
             <StatusBar style="auto"/>
         </NavigationContainer>

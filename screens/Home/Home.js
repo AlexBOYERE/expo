@@ -23,7 +23,9 @@ export default function Home({navigation, route: {params}}) {
                 source={require('../../assets/images/quizz.jpg')}
             />
             <Text style={styles.title}>Bienvenue {params.userName} dans Quizz Game !</Text>
-            <Pressable style={[styles.pressable, styles.textIcon, styles.bgBlue]} disabled={true}>
+            <Pressable style={[styles.pressable, styles.textIcon, styles.bgBlue]} onPress={() =>
+                navigation.navigate('Play', {'userName': params.userName})
+            }>
                 <Icon name={'dice'} size={20} color={'white'}/>
                 <Text style={styles.colorWhite}>
                     Commencer
